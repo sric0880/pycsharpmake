@@ -7,7 +7,7 @@ class Makefile:
 		self.runnable = runnable 
 
 	def make(self, filename, out_root_path, scripts_root_path):
-		with file(filename, 'r') as stream:
+		with open(filename, 'r') as stream:
 			content = yaml.load(stream)
 		if not content:
 			raise Exception('makefile %s not supported or not found' % filename)
@@ -46,7 +46,7 @@ class Makefile:
 			raise Exception("Compile error")
 		else:
 			self.runnable = outfile
-			print 'Compile success'
+			print('Compile success')
 
 	def run(self, *args):
 		if self.runnable:
@@ -54,7 +54,7 @@ class Makefile:
 				'' if self.windows else 'mono ',
 				self.runnable,
 				' '.join(args) if args else '')
-			print cmd
+			print(cmd)
 			if os.system(cmd) != 0:
 				raise Exception("error generate code")
 

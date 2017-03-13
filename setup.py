@@ -8,4 +8,8 @@ setup(name='pycsharpmake',
       author_email='justgotpaid88@qq.com',
       license='MIT',
       packages=['pycsharpmake'],
+      test_suite='test.my_test_suite',
+      install_requires=[
+          'pyyaml',
+      ],
       zip_safe=False)
