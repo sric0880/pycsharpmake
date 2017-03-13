@@ -8,7 +8,15 @@ cd pycsharpmake
 sudo pip install .
 ```
 
+## Unit Test
+
+```
+cd pycsharpmake
+python setup.py test
+```
+
 ## Usage
+see example under test dir
 
 ```python
 import pycsharpmake
