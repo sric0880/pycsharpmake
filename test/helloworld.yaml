@@ -1,0 +1,8 @@
+out: helloworld.exe
+main: HelloWorld
+debug: YES
+depends:
+defines:
+files:
+ - Helloworld.cs
+folders:
