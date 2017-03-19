@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pycsharpmake',
-      version='1.0',
+      version='1.1',
       description='compile cs files to exe using python',
       url='https://github.com/sric0880/pycsharpmake.git',
       author='sric0880',

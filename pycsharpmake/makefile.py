@@ -48,12 +48,12 @@ class Makefile:
 			self.runnable = outfile
 			print('Compile success')
 
-	def run(self, *args):
+	def run(self, *args, **kwargs):
 		if self.runnable:
-			cmd = '%s%s %s' % (\
-				'' if self.windows else 'mono ',
-				self.runnable,
-				' '.join(args) if args else '')
+			executable = '' if self.windows else 'mono '
+			debugable = '' if self.windows or not kwargs['debug'] else '--debug '
+			all_args = ' '.join(args) if args else ''
+			cmd = executable + debugable + self.runnable + ' ' + all_args
 			print(cmd)
 			if os.system(cmd) != 0:
 				raise Exception("error generate code")
