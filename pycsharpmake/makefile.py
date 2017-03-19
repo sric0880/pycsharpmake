@@ -51,7 +51,7 @@ class Makefile:
 	def run(self, *args, **kwargs):
 		if self.runnable:
 			executable = '' if self.windows else 'mono '
-			debugable = '' if self.windows or not kwargs['debug'] else '--debug '
+			debugable = '' if self.windows or not kwargs.get('debug') else '--debug '
 			all_args = ' '.join(args) if args else ''
 			cmd = executable + debugable + self.runnable + ' ' + all_args
 			print(cmd)

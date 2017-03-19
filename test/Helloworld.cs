@@ -2,8 +2,11 @@
 
 public static class HelloWorld
 {
-    public static void Main()
+    public static void Main(string[] args)
     {
-        Console.WriteLine("hello world");
+    	foreach(var arg in args)
+    	{
+        Console.WriteLine(arg);
+    	}
     }
 }
