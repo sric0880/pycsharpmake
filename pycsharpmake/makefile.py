@@ -32,17 +32,18 @@ class Makefile:
 		if folders:
 			folders = ['/recurse:' + path.join(scripts_root_path, x) for x in folders]
 
-		cmd = '%s %s /out:%s /main:%s %s %s %s %s' % \
+		cmd = '%s %s /out:%s %s %s %s %s %s' % \
 			('csc' if self.windows else 'mcs',
 				'/debug' if isDebug else '',
 				outfile,
-				mainfile,
+				'/main:' + mainfile if mainfile is not None else '/target:library',
 				'/r:' + ','.join(dlls) if dlls else '',
 				'/define:' + defines if defines else '',
 				' '.join(files) if files else '',
 				' '.join(folders) if folders else '')
 
 		if os.system(cmd) != 0:
+			print(cmd)
 			raise Exception("Compile error")
 		else:
 			self.runnable = outfile
