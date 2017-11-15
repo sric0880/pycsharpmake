@@ -6,6 +6,9 @@ class Makefile:
 		self.windows = platform.system().startswith("Windows")
 		self.runnable = runnable 
 
+	# def setCompiler(self, compilerPath):
+	# 	self.compiler = compilerPath
+
 	def make(self, filename, out_root_path, scripts_root_path):
 		with open(filename, 'r') as stream:
 			content = yaml.load(stream)
@@ -32,7 +35,7 @@ class Makefile:
 		if folders:
 			folders = ['/recurse:' + path.join(scripts_root_path, x) for x in folders]
 
-		cmd = '%s %s /out:%s %s %s %s %s %s' % \
+		cmd = '%s %s /out:%s %s %s %s %s %s %s' % \
 			('csc' if self.windows else 'mcs',
 				'/debug' if isDebug else '',
 				outfile,
@@ -40,10 +43,11 @@ class Makefile:
 				'/r:' + ','.join(dlls) if dlls else '',
 				'/define:' + defines if defines else '',
 				' '.join(files) if files else '',
-				' '.join(folders) if folders else '')
+				' '.join(folders) if folders else '',
+				'' if self.windows else '/sdk:2')
 
+		print(cmd)
 		if os.system(cmd) != 0:
-			print(cmd)
 			raise Exception("Compile error")
 		else:
 			self.runnable = outfile
