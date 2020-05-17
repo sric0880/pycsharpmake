@@ -11,7 +11,7 @@ class Makefile:
 
 	def make(self, filename, out_root_path, scripts_root_path):
 		with open(filename, 'r') as stream:
-			content = yaml.load(stream)
+			content = yaml.safe_load(stream)
 		if not content:
 			raise Exception('makefile %s not supported or not found' % filename)
 
